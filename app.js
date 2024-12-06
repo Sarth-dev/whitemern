@@ -86,7 +86,7 @@ function isLoggedIn(req, res, next) {
     }
 
     try {
-        let data = jwt.verify(req.cookies.token, "shhhhh"); // Replace "shhhhh" with your actual secret key
+        let data = jwt.verify(req.cookies.token, "shhhhh"); 
         req.user = data;
         next();
     } catch (error) {
@@ -103,8 +103,8 @@ app.get('/createEmployee',isLoggedIn,(req,res) => {
 app.get('/employee',isLoggedIn, async (req, res) => {
     try {
         const user = req.user;
-        const employees = await Employee.find(); // Fetch all employees from the database
-        res.render('employeeList', { currentPage : 'employee', employees, user }); // Pass data to the EJS template
+        const employees = await Employee.find(); 
+        res.render('employeeList', { currentPage : 'employee', employees, user }); 
     } catch (err) {
         console.error(err);
         res.status(500).send('Error retrieving employees');
@@ -114,7 +114,7 @@ app.get('/employee',isLoggedIn, async (req, res) => {
 
 app.post('/createemployee', upload.single('image'), async (req, res) => {
     try {
-        console.log('File uploaded:', req.file); // Debug log
+        console.log('File uploaded:', req.file); 
         console.log('Request body:', req.body);
 
         if (!req.file) {
@@ -192,7 +192,7 @@ app.post('/employee/edit/:id', isLoggedIn ,upload.single('image'), async (req, r
         };
 
         if (req.file) {
-            updatedData.image = req.file.filename; // Update image if a new file is uploaded
+            updatedData.image = req.file.filename; 
         }
 
         const employee = await Employee.findByIdAndUpdate(id, updatedData, { new: true });
