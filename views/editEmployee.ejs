@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="Javascript">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Create Employee page</title>
+</head>
+<body>
+    <div class="w-full h-screen bg-zinc-800 text-white">
+        <div class="logo w-full h-8 bg-[#FFB300] p-1 text-black">Logo</div>
+        <%- include('partials/navbar') %>
+        <div class="w-full p-5 h-full bg-zinc-900">
+            <h1>Edit Employee Details</h1>
+            <form action="/employee/edit/<%= employee._id %>" method="POST" enctype="multipart/form-data" class="space-y-4">
+    
+                <!-- Name -->
+                <div>
+                    <label for="name" class="block font-medium">Name:</label>
+                    <input type="text" id="name" name="name" value="<%= employee.name %>" class="w-full bg-zinc-700 outline-none border border-gray-300 p-2 rounded-md" required>
+                </div>
+            
+                <!-- Email -->
+                <div>
+                    <label for="email" class="block font-medium">Email:</label>
+                    <input type="email" id="email" name="email" value="<%= employee.email %>" class="w-full bg-zinc-700 outline-none border border-gray-300 p-2 rounded-md" required>
+                </div>
+            
+                <!-- Mobile No -->
+                <div>
+                    <label for="mobile" class="block font-medium">Mobile No:</label>
+                    <input type="text" id="mobile" name="mobile" value="<%= employee.mobile %>" class="w-full bg-zinc-700 outline-none border border-gray-300 p-2 rounded-md" required>
+                </div>
+            
+                <!-- Designation -->
+                <div>
+                    <label for="designation" class="block font-medium">Designation:</label>
+                    <select id="designation" name="designation" class="w-full bg-zinc-700 outline-none border border-gray-300 p-2 rounded-md" required>
+                        <option value="HR" <%= employee.designation === 'HR' ? 'selected' : '' %>>HR</option>
+                        <option value="Manager" <%= employee.designation === 'Manager' ? 'selected' : '' %>>Manager</option>
+                        <option value="Sales" <%= employee.designation === 'Sales' ? 'selected' : '' %>>Sales</option>
+                    </select>
+                </div>
+            
+                <!-- Gender -->
+                <div>
+                    <label class="block font-medium">Gender:</label>
+                    <div class="flex gap-4">
+                        <label>
+                            <input type="radio" name="gender" value="M" <%= employee.gender === 'M' ? 'checked' : '' %>> Male
+                        </label>
+                        <label>
+                            <input type="radio" name="gender" value="F" <%= employee.gender === 'F' ? 'checked' : '' %>> Female
+                        </label>
+                    </div>
+                </div>
+            
+                <!-- Course -->
+                <div>
+                    <label class="block font-medium">Course:</label>
+                    <div class="flex flex-wrap gap-4">
+                        <label>
+                            <input type="checkbox" name="course" value="MCA" <%= employee.courses.includes('MCA') ? 'checked' : '' %>> MCA
+                        </label>
+                        <label>
+                            <input type="checkbox" name="course" value="BCA" <%= employee.courses.includes('BCA') ? 'checked' : '' %>> BCA
+                        </label>
+                        <label>
+                            <input type="checkbox" name="course" value="BSC" <%= employee.courses.includes('BSC') ? 'checked' : '' %>> BSC
+                        </label>
+                    </div>
+                </div>
+            
+                <!-- Image Upload -->
+                <div>
+                    <label for="image" class="block font-medium">Image Upload:</label>
+                    <input type="file" id="image" name="image" class="w-full bg-zinc-700 outline-none border border-gray-300 p-2 rounded-md" accept="image/*">
+                    <p>Current Image: <img src="/uploads/<%= employee.image %>" alt="Employee Image" style="width: 100px;"></p>
+                </div>
+            
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+                        Update
+                    </button>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</body>
+</html>

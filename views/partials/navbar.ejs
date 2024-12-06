@@ -1,0 +1,14 @@
+<nav class="w-full h-24 bg-zinc-600">
+    <ul class="flex justify-evenly p-8">
+        <li class="<%= currentPage === 'home' ? 'active' : '' %>"><a href="/">Home</a></li>
+        <li class="<%= currentPage === 'employee' ? 'active' : '' %>"><a href="/employee">Employee List</a></li>
+        <li class="text-white"><a href="#"><%= user ? user.username : 'Guest' %></a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</nav>
+
+
+
+
+
+
